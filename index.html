@@ -1,229 +1,153 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>블루컴퍼니 - 신뢰로 만드는 미래</title>
-  <meta name="description" content="축적된 경험과 노하우로 고객의 성공을 최우선으로 생각하는 기업, 블루컴퍼니">
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>K&C인증원 | 인증 컨설팅 전문기업</title>
+<meta name="description" content="국내인증(KC·에너지효율·고효율·안전), 해외인증(CE·FCC·PSE·UL·CCC), 기업(확인)인증(ISO·KS·메인비즈·이노비즈·벤처·연구소·직접생산)까지 한 곳에서." />
 
-  <!-- 폰트: Pretendard(한글) + Space Grotesk(영문/숫자) -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
-  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://cdn.jsdelivr.net" />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
 
-  <link rel="stylesheet" href="style.css">
+<!-- 스타일(색상/디자인) -->
+<link rel="stylesheet" href="style.css" />
 </head>
 <body>
 
-  <!-- ===================== 헤더 ===================== -->
-  <header class="site-header" id="header">
-    <div class="container header-inner">
-      <a href="#top" class="logo" data-content="로고글자">BLUE COMPANY</a>
+<!-- =====================================================================
+     ★ 화면에 나오는 "글자"는 모두 content.md 에서 가져옵니다. ★
+       - 내용을 바꾸려면 → content.md 를 수정하세요.
+       - 색상/디자인을 바꾸려면 → style.css 를 수정하세요.
+       - 이 파일(index.html)은 '뼈대'라서 손댈 일이 거의 없습니다.
+     ===================================================================== -->
 
-      <nav class="nav" id="nav" aria-label="주 메뉴">
-        <div class="nav-item" data-sub="회사소개_하위">
-          <a href="#company">회사소개</a>
-          <ul class="submenu"></ul>
-        </div>
-        <div class="nav-item" data-sub="__business_auto">
-          <a href="#business">사업분야</a>
-          <ul class="submenu"></ul>
-        </div>
-        <div class="nav-item" data-sub="오시는길_하위">
-          <a href="#location">오시는 길</a>
-          <ul class="submenu"></ul>
-        </div>
-        <div class="nav-item" data-sub="문의하기_하위">
-          <a href="#contact">문의하기</a>
-          <ul class="submenu"></ul>
-        </div>
-      </nav>
+<!-- content.md 를 못 읽었을 때만 script.js 가 여기에 안내문을 넣습니다 -->
+<div id="fileNotice"></div>
 
-      <button class="nav-toggle" id="navToggle" aria-label="메뉴 열기" aria-expanded="false">
-        <span></span><span></span><span></span>
-      </button>
-    </div>
-  </header>
+<header>
+  <div class="wrap nav">
+    <a href="#top" class="logo"><span class="mark" id="logoMark">KC</span><span id="logoText"></span></a>
+    <ul class="menu" id="menu">
+      <li><a href="#company">회사소개</a><ul class="dropdown" data-sub="company"></ul></li>
+      <li><a href="#business">사업분야</a><ul class="dropdown" data-sub="business"></ul></li>
+      <li><a href="#location">오시는 길</a><ul class="dropdown" data-sub="location"></ul></li>
+      <li><a href="#contact">문의하기</a><ul class="dropdown" data-sub="contact"></ul></li>
+    </ul>
+    <a href="#contact" class="nav-cta" id="navCta">상담 문의 &nbsp;→</a>
+    <button class="hamb" id="hamb" aria-label="메뉴"><span></span><span></span><span></span></button>
+  </div>
+</header>
 
-  <!-- ===================== 히어로 ===================== -->
-  <section class="hero" id="top">
-    <div class="hero-bg" aria-hidden="true">
-      <div class="hero-grid"></div>
-      <div class="hero-glow"></div>
-    </div>
-    <div class="container hero-inner">
-      <p class="hero-eyebrow reveal" data-content="히어로_소제목">TRUST &amp; GROWTH PARTNER</p>
-      <h1 class="hero-title reveal" data-content="히어로_제목">신뢰로 만드는 미래,<br>함께 성장하는 파트너</h1>
-      <p class="hero-desc reveal" data-content="히어로_설명">축적된 경험과 노하우로 고객의 성공을 최우선으로 생각합니다.</p>
-      <div class="hero-actions reveal">
-        <a href="#contact" class="btn btn-primary" data-content="히어로_버튼1">문의하기</a>
-        <a href="#company" class="btn btn-ghost" data-content="히어로_버튼2">회사소개 보기</a>
+<main id="top">
+  <!-- HERO -->
+  <section class="hero" style="padding:0">
+    <div class="wrap">
+      <span class="eyebrow" id="heroEyebrow"></span>
+      <h1 id="heroTitle"></h1>
+      <p id="heroDesc"></p>
+      <div class="hero-btns">
+        <a href="#contact" class="btn btn-primary" id="heroBtn1"></a>
+        <a href="#business" class="btn btn-ghost" id="heroBtn2"></a>
       </div>
+      <div class="hero-badges" id="heroBadges"></div>
     </div>
-    <a href="#company" class="hero-scroll" aria-label="아래로 스크롤"><span></span></a>
+    <div class="hero-wave">
+      <svg viewBox="0 0 1440 90" preserveAspectRatio="none" style="width:100%;height:70px"><path fill="#ffffff" d="M0,64L60,58.7C120,53,240,43,360,42.7C480,43,600,53,720,58.7C840,64,960,64,1080,56C1200,48,1320,32,1380,24L1440,16L1440,90L0,90Z"></path></svg>
+    </div>
   </section>
 
-  <!-- ===================== 회사소개 ===================== -->
-  <section class="section" id="company">
-    <div class="container">
-      <div class="company-head">
-        <div class="company-intro">
-          <p class="eyebrow reveal" data-content="회사소개_소제목">COMPANY</p>
-          <h2 class="section-title reveal" data-content="회사소개_제목">블루컴퍼니와 함께라면<br>성공할 수 있습니다</h2>
-          <p class="section-text reveal" data-content="회사소개_본문">저희는 고객의 경쟁력과 가치를 높이기 위해 오늘도 고민하고 도전하며 실천합니다.</p>
+  <!-- COMPANY -->
+  <section id="company">
+    <div class="wrap company-grid">
+      <div class="company-text reveal">
+        <span class="eyebrow" id="companyEyebrow"></span>
+        <h2 class="sec-title" id="companyTitle"></h2>
+        <p id="companyBody"></p>
+        <div class="hero-btns" style="margin-top:28px">
+          <a href="#business" class="btn btn-primary" style="background:var(--brand);color:#fff">사업분야 자세히 보기 &nbsp;→</a>
         </div>
       </div>
-
-      <div class="stats" id="stats">
-        <div class="stat reveal">
-          <div class="stat-num"><span class="count" data-content-num="숫자1_값" data-target="20">0</span><em data-content="숫자1_접미사">년</em></div>
-          <p class="stat-label" data-content="숫자1_라벨">업력</p>
-        </div>
-        <div class="stat reveal">
-          <div class="stat-num"><span class="count" data-content-num="숫자2_값" data-target="12">0</span><em data-content="숫자2_접미사">개</em></div>
-          <p class="stat-label" data-content="숫자2_라벨">사업 분야</p>
-        </div>
-        <div class="stat reveal">
-          <div class="stat-num"><span class="count" data-content-num="숫자3_값" data-target="1500">0</span><em data-content="숫자3_접미사">+</em></div>
-          <p class="stat-label" data-content="숫자3_라벨">누적 실적</p>
-        </div>
-        <div class="stat reveal">
-          <div class="stat-num"><span class="count" data-content-num="숫자4_값" data-target="98">0</span><em data-content="숫자4_접미사">%</em></div>
-          <p class="stat-label" data-content="숫자4_라벨">고객 만족도</p>
-        </div>
+      <div class="company-visual reveal">
+        <div class="ribbon" style="top:20px;left:22px">CERTIFICATION</div>
+        <div class="ribbon" style="bottom:20px;right:22px">TOTAL SOLUTION</div>
+        <div class="seal"><span><b id="sealMark">K&C</b><small id="sealText">인증원</small></span></div>
       </div>
     </div>
   </section>
 
-  <!-- ===================== 사업분야 ===================== -->
-  <section class="section section-soft" id="business">
-    <div class="container">
-      <div class="section-head reveal">
-        <p class="eyebrow" data-content="사업분야_소제목">BUSINESS</p>
-        <h2 class="section-title" data-content="사업분야_제목">사업 분야</h2>
-        <p class="section-text center" data-content="사업분야_설명">블루컴퍼니가 제공하는 핵심 사업 분야를 소개합니다.</p>
-      </div>
-      <div class="cards" id="businessCards">
-        <!-- 카드는 content.md 의 [사업분야] 목록으로 자동 생성됩니다 -->
-      </div>
+  <!-- STATS -->
+  <section class="stats" id="stats" style="padding:64px 0">
+    <div class="wrap"><div class="stats-grid" id="statsGrid"></div></div>
+  </section>
+
+  <!-- BUSINESS -->
+  <section id="business">
+    <div class="wrap center">
+      <span class="eyebrow" id="bizEyebrow"></span>
+      <h2 class="sec-title" id="bizTitle"></h2>
+      <p class="sec-desc" id="bizDesc" style="max-width:660px;margin-left:auto;margin-right:auto"></p>
+    </div>
+    <div class="wrap" id="bizGroups"></div>
+  </section>
+
+  <!-- LOCATION -->
+  <section class="loc" id="location">
+    <div class="wrap center">
+      <span class="eyebrow" id="locEyebrow"></span>
+      <h2 class="sec-title" id="locTitle"></h2>
+    </div>
+    <div class="wrap loc-grid">
+      <div class="map-box reveal"><iframe id="mapFrame" loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="오시는 길 지도"></iframe></div>
+      <div class="loc-info reveal" id="locInfo"></div>
     </div>
   </section>
 
-  <!-- ===================== 오시는 길 ===================== -->
-  <section class="section" id="location">
-    <div class="container">
-      <div class="section-head reveal">
-        <p class="eyebrow" data-content="오시는길_소제목">LOCATION</p>
-        <h2 class="section-title" data-content="오시는길_제목">오시는 길</h2>
-      </div>
-      <div class="location-grid">
-        <div class="map-wrap reveal">
-          <iframe id="mapFrame" title="회사 위치 지도" loading="lazy"
-                  referrerpolicy="no-referrer-when-downgrade"
-                  src="https://maps.google.com/maps?q=%EC%84%9C%EC%9A%B8%ED%8A%B9%EB%B3%84%EC%8B%9C%20%EA%B0%95%EB%82%A8%EA%B5%AC%20%ED%85%8C%ED%97%A4%EB%9E%80%EB%A1%9C&z=16&output=embed"></iframe>
+  <!-- CONTACT -->
+  <section class="contact-sec" id="contact">
+    <div class="wrap">
+      <div class="contact-grid">
+        <div class="contact-left reveal">
+          <span class="eyebrow" id="ctEyebrow"></span>
+          <h2 class="sec-title" id="ctTitle"></h2>
+          <p class="sec-desc" id="ctDesc"></p>
+          <ul id="ctInfo"></ul>
         </div>
-        <div class="location-info reveal">
-          <ul class="info-list">
-            <li>
-              <span class="info-label">주소</span>
-              <span class="info-value" data-content="주소">서울특별시 강남구 테헤란로 123</span>
-            </li>
-            <li>
-              <span class="info-label">전화</span>
-              <span class="info-value"><a data-content-tel="전화" href="tel:0212345678">02-1234-5678</a></span>
-            </li>
-            <li>
-              <span class="info-label">팩스</span>
-              <span class="info-value" data-content="팩스">02-1234-5679</span>
-            </li>
-            <li>
-              <span class="info-label">이메일</span>
-              <span class="info-value"><a data-content-mail="이메일" href="mailto:contact@bluecompany.co.kr">contact@bluecompany.co.kr</a></span>
-            </li>
-            <li>
-              <span class="info-label">영업시간</span>
-              <span class="info-value" data-content="영업시간">평일 09:00 - 18:00</span>
-            </li>
-          </ul>
+        <div class="form reveal">
+          <h3>무료 상담 신청</h3>
+          <p class="sub">필요한 인증 분야와 제품을 알려주세요.</p>
+          <form id="inquiryForm">
+            <div class="row2">
+              <div class="field"><label>이름 / 회사명 <span>*</span></label><input name="name" required placeholder="홍길동 / (주)OOO" /></div>
+              <div class="field"><label>연락처 <span>*</span></label><input name="phone" required placeholder="010-0000-0000" /></div>
+            </div>
+            <div class="field"><label>이메일</label><input type="email" name="email" placeholder="name@example.com" /></div>
+            <div class="field"><label>관심 인증 분야</label><select name="service" id="serviceSelect"><option value="">선택해 주세요</option></select></div>
+            <div class="field"><label>문의 내용 <span>*</span></label><textarea name="message" required placeholder="제품/업종과 필요한 인증, 일정 등을 적어주세요."></textarea></div>
+            <button type="submit" class="form-submit">문의 보내기</button>
+            <p class="form-note" id="formNote"></p>
+          </form>
         </div>
       </div>
     </div>
   </section>
+</main>
 
-  <!-- ===================== 문의하기 ===================== -->
-  <section class="section section-dark" id="contact">
-    <div class="container">
-      <div class="section-head reveal">
-        <p class="eyebrow light" data-content="문의_소제목">CONTACT</p>
-        <h2 class="section-title light" data-content="문의_제목">무엇을 도와드릴까요?</h2>
-        <p class="section-text center light" data-content="문의_설명">궁금한 점을 남겨주시면 영업일 기준 2일 이내에 답변드립니다.</p>
+<footer>
+  <div class="wrap">
+    <div class="foot-top">
+      <div>
+        <div class="foot-brand"><span class="mark" id="footMark">KC</span><span id="footBrand"></span></div>
+        <p class="foot-msg" id="footMsg"></p>
       </div>
-
-      <form class="contact-form reveal" id="contactForm" novalidate>
-        <div class="form-row">
-          <div class="field">
-            <label for="f-name">이름 <span>*</span></label>
-            <input type="text" id="f-name" name="이름" placeholder="홍길동" required>
-          </div>
-          <div class="field">
-            <label for="f-company">회사/단체명</label>
-            <input type="text" id="f-company" name="회사명" placeholder="(주)000">
-          </div>
-        </div>
-        <div class="form-row">
-          <div class="field">
-            <label for="f-phone">연락처 <span>*</span></label>
-            <input type="tel" id="f-phone" name="연락처" placeholder="010-0000-0000" required>
-          </div>
-          <div class="field">
-            <label for="f-email">이메일</label>
-            <input type="email" id="f-email" name="이메일" placeholder="name@email.com">
-          </div>
-        </div>
-        <div class="field">
-          <label for="f-message">문의 내용 <span>*</span></label>
-          <textarea id="f-message" name="문의내용" rows="5" placeholder="문의하실 내용을 입력해 주세요." required></textarea>
-        </div>
-        <div class="form-bottom">
-          <label class="agree">
-            <input type="checkbox" id="f-agree" required>
-            <span>개인정보 수집 및 이용에 동의합니다.</span>
-          </label>
-          <button type="submit" class="btn btn-primary">문의 보내기</button>
-        </div>
-        <p class="form-status" id="formStatus" role="status" aria-live="polite"></p>
-      </form>
+      <div class="foot-contact" id="footContact"></div>
     </div>
-  </section>
+    <div class="foot-bottom" id="footCopy"></div>
+  </div>
+</footer>
 
-  <!-- ===================== 푸터 ===================== -->
-  <footer class="site-footer">
-    <div class="container footer-inner">
-      <div class="footer-brand">
-        <p class="footer-logo" data-content="로고글자">BLUE COMPANY</p>
-        <p class="footer-tagline" data-content="푸터_문구">정직과 신뢰로 고객과 함께 성장하는 기업이 되겠습니다.</p>
-      </div>
-      <div class="footer-contact">
-        <p><span data-content="회사명">(주)블루컴퍼니</span></p>
-        <p data-content="주소">서울특별시 강남구 테헤란로 123</p>
-        <p>TEL. <span data-content="전화">02-1234-5678</span> &nbsp;|&nbsp; FAX. <span data-content="팩스">02-1234-5679</span></p>
-      </div>
-    </div>
-    <div class="footer-bottom">
-      <div class="container">
-        <p data-content="저작권">© 2026 BLUE COMPANY. All rights reserved.</p>
-      </div>
-    </div>
-  </footer>
+<button class="to-top" id="toTop" aria-label="위로">↑</button>
 
-  <!-- 우측 하단 빠른 전화 버튼 -->
-  <a class="quick-call" id="quickCall" href="tel:0212345678" aria-label="전화 걸기">
-    <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-      <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.9.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/>
-    </svg>
-  </a>
-
-  <script src="script.js"></script>
+<!-- 동작 스크립트 (content.md 를 읽어 위 뼈대에 글자를 채웁니다) -->
+<script src="script.js"></script>
 </body>
 </html>
