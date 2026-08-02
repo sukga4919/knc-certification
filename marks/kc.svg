@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="37" height="58" viewBox="26 0 451 701"><g fill="#00287B">
+  <path d="M26 5h155v40H26zM26 655h155v43H26zM26 5h44v693H26z"/>
+  <path d="M135 45h46v115.3A307.5 307.5 0 0 1 135 242.2Z"/>
+  <path d="M135 457.8A307.5 307.5 0 0 1 181 539.7V655h-46Z"/>
+  <path fill-rule="evenodd" clip-path="url(#kcArmA)" d="M423-2a352 352 0 1 0 .1 0zM423 42.5a307.5 307.5 0 1 1-.1 0z"/>
+  <path fill-rule="evenodd" d="M423 106.4a243.6 243.6 0 1 0 .1 0zM423 153a197 197 0 1 1-.1 0z"/>
+  <path fill-rule="evenodd" d="M423 215.6a134.4 134.4 0 1 0 .1 0zM423 261.6a88.4 88.4 0 1 1-.1 0z"/>
+</g><clipPath id="kcArmA"><rect x="135" y="-20" width="400" height="740"/></clipPath></svg>

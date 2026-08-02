@@ -161,41 +161,23 @@ const nl = s => esc(s).replace(/\\n/g, '<br>');
 
 /* =====================================================================
    2) 인증 마크(로고)
-      ★ 실제 공식 로고를 넣는 방법 ★
-        index.html 과 같은 폴더에 "marks" 폴더를 만들고, 그 안에
-        아래 파일명으로 실제 로고 이미지를 저장하면 자동으로 표시됩니다.
-          marks/kc.png       marks/energy.png   marks/higheff.png  marks/safety.png
-          marks/ce.png       marks/fcc.png      marks/pse.png      marks/ul.png
-          marks/ccc.png      marks/iso.png      marks/ks.png       marks/mainbiz.png
-          marks/innobiz.png  marks/venture.png  marks/rnd.png      marks/direct.png
-      아래 SVG는 실제 로고 파일이 없을 때 임시로 보여주는 대체 그림입니다.
+      마크 그림은 모두 marks 폴더 안의 파일입니다. (외부 주소 없음)
+        marks/kc.svg       marks/energy.svg   marks/higheff.svg  marks/safety.svg
+        marks/ce.svg       marks/fcc.svg      marks/pse.svg      marks/ul.svg
+        marks/ccc.svg      marks/iso.svg      marks/ks.svg       marks/mainbiz.svg
+        marks/innobiz.svg  marks/venture.svg  marks/rnd.svg      marks/direct.svg
+      ★ 로고를 바꾸고 싶으면 위 파일을 덮어쓰면 됩니다.
+        png 로 바꾸고 싶으면 같은 이름의 .png 를 넣어두면 그것도 자동으로 씁니다.
+        (예: marks/kc.png)
    ===================================================================== */
-const MARKS = {
-  KC: `<svg width="112" height="60" viewBox="0 0 112 60"><text x="56" y="45" text-anchor="middle" font-family="Arial,Helvetica,sans-serif" font-weight="900" font-size="46" fill="#0b3a6f" letter-spacing="-2">KC</text></svg>`,
-  ENERGY: `<svg width="90" height="76" viewBox="0 0 90 78"><polygon points="6,8 36,8 43,13.5 36,19 6,19" fill="#009e4f"/><polygon points="6,21 44,21 51,26.5 44,32 6,32" fill="#8cc63e"/><polygon points="6,34 52,34 59,39.5 52,45 6,45" fill="#f4d500"/><polygon points="6,47 60,47 67,52.5 60,58 6,58" fill="#f6a01e"/><polygon points="6,60 68,60 75,65.5 68,71 6,71" fill="#e8371f"/><text x="12" y="17.5" font-family="Arial" font-weight="800" font-size="9" fill="#fff">1</text><text x="12" y="30.5" font-family="Arial" font-weight="800" font-size="9" fill="#fff">2</text><text x="12" y="43.5" font-family="Arial" font-weight="800" font-size="9" fill="#5a5000">3</text><text x="12" y="56.5" font-family="Arial" font-weight="800" font-size="9" fill="#fff">4</text><text x="12" y="69.5" font-family="Arial" font-weight="800" font-size="9" fill="#fff">5</text></svg>`,
-  HIGHEFF: `<svg width="70" height="70" viewBox="0 0 70 70"><circle cx="35" cy="35" r="32" fill="#0a8f4d"/><circle cx="35" cy="35" r="27" fill="none" stroke="#fff" stroke-width="1.5" opacity=".6"/><text x="35" y="34" text-anchor="middle" font-family="'Malgun Gothic',sans-serif" font-weight="800" font-size="17" fill="#fff">고효율</text><text x="35" y="49" text-anchor="middle" font-family="Arial" font-weight="700" font-size="9" letter-spacing="1" fill="#d6f5e2">ENERGY</text></svg>`,
-  SAFETY: `<svg width="72" height="70" viewBox="0 0 72 70"><path d="M36 4l26 8v18c0 17-12 27-26 32C22 57 10 47 10 30V12z" fill="#c62828"/><text x="36" y="33" text-anchor="middle" font-family="Arial" font-weight="900" font-size="20" fill="#fff">KC</text><text x="36" y="48" text-anchor="middle" font-family="'Malgun Gothic',sans-serif" font-weight="800" font-size="10" fill="#ffe0e0">안전확인</text></svg>`,
-  CE: `<svg width="128" height="66" viewBox="0 0 128 66" fill="none" stroke="#111" stroke-width="11" stroke-linecap="butt"><path d="M46 20 A19 19 0 1 1 46 46"/><path d="M110 20 A19 19 0 1 1 110 46"/><path d="M80 33 h24"/></svg>`,
-  FCC: `<svg width="132" height="60" viewBox="0 0 132 60"><text x="66" y="44" text-anchor="middle" font-family="Arial,Helvetica,sans-serif" font-weight="900" font-size="38" fill="#111" letter-spacing="0">FCC</text></svg>`,
-  PSE: `<svg width="66" height="66" viewBox="0 0 66 66"><circle cx="33" cy="33" r="30" fill="none" stroke="#111" stroke-width="4"/><text x="33" y="41" text-anchor="middle" font-family="Arial" font-weight="800" font-size="21" fill="#111">PSE</text></svg>`,
-  UL: `<svg width="66" height="66" viewBox="0 0 66 66"><circle cx="33" cy="33" r="30" fill="none" stroke="#111" stroke-width="4"/><text x="33" y="42" text-anchor="middle" font-family="'Times New Roman',Georgia,serif" font-weight="700" font-size="26" fill="#111">UL</text></svg>`,
-  CCC: `<svg width="132" height="60" viewBox="0 0 132 60"><text x="66" y="44" text-anchor="middle" font-family="Arial,Helvetica,sans-serif" font-weight="900" font-size="40" fill="#111" letter-spacing="-6">CCC</text></svg>`,
-  ISO: `<svg width="128" height="66" viewBox="0 0 128 66"><circle cx="33" cy="33" r="29" fill="#0b3a6f"/><text x="33" y="40" text-anchor="middle" font-family="Arial" font-weight="800" font-size="19" fill="#fff">ISO</text><text x="70" y="26" font-family="Arial" font-weight="800" font-size="13" fill="#0b3a6f">9001</text><text x="70" y="41" font-family="Arial" font-weight="800" font-size="13" fill="#1769c0">14001</text><text x="70" y="56" font-family="Arial" font-weight="800" font-size="13" fill="#0aa5b1">45001</text></svg>`,
-  KS: `<svg width="100" height="60" viewBox="0 0 100 60"><text x="50" y="45" text-anchor="middle" font-family="Arial,Helvetica,sans-serif" font-weight="900" font-size="44" fill="#0b3a6f" letter-spacing="-1">KS</text></svg>`,
-  MAINBIZ: `<svg width="150" height="52" viewBox="0 0 150 52"><text x="6" y="36" font-family="Arial,Helvetica,sans-serif" font-weight="900" font-size="29" fill="#003a70">Main</text><text x="80" y="36" font-family="Arial,Helvetica,sans-serif" font-weight="900" font-size="29" fill="#e2001a">biz</text></svg>`,
-  INNOBIZ: `<svg width="164" height="52" viewBox="0 0 164 52"><text x="6" y="36" font-family="Arial,Helvetica,sans-serif" font-weight="900" font-size="27" fill="#0067b3">INNO</text><text x="92" y="36" font-family="Arial,Helvetica,sans-serif" font-weight="900" font-size="27" fill="#39a935">-BIZ</text></svg>`,
-  VENTURE: `<svg width="120" height="62" viewBox="0 0 120 62"><rect x="3" y="9" width="114" height="44" rx="22" fill="#fff" stroke="#e2001a" stroke-width="3"/><text x="60" y="30" text-anchor="middle" font-family="Arial" font-weight="800" font-size="13" letter-spacing="1" fill="#e2001a">VENTURE</text><text x="60" y="46" text-anchor="middle" font-family="'Malgun Gothic',sans-serif" font-weight="800" font-size="12" fill="#333">벤처기업 확인</text></svg>`,
-  RND: `<svg width="70" height="70" viewBox="0 0 70 70"><circle cx="35" cy="35" r="32" fill="#0e6b8f"/><path d="M29 16h12v3h-2v9l8 15a4 4 0 0 1-3.6 5.8H26.6A4 4 0 0 1 23 43l8-15v-9h-2z" fill="none" stroke="#fff" stroke-width="2.4" stroke-linejoin="round"/><circle cx="35" cy="42" r="3" fill="#8fe3ff"/><text x="35" y="61" text-anchor="middle" font-family="'Malgun Gothic',sans-serif" font-weight="800" font-size="9" fill="#eaf7ff">연구소</text></svg>`,
-  DIRECT: `<svg width="70" height="70" viewBox="0 0 70 70"><circle cx="35" cy="35" r="32" fill="#0b3a6f"/><path d="M23 35l8 8 16-17" fill="none" stroke="#fff" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/><text x="35" y="60" text-anchor="middle" font-family="'Malgun Gothic',sans-serif" font-weight="800" font-size="9" fill="#dbe8fb">직접생산</text></svg>`,
-  DEFAULT: `<svg width="64" height="64" viewBox="0 0 64 64"><circle cx="32" cy="32" r="28" fill="none" stroke="#1769c0" stroke-width="3"/><path d="M22 32l7 7 14-15" fill="none" stroke="#1769c0" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/></svg>`
-};
-const markSVG = id => MARKS[id] || MARKS.DEFAULT;
+/* 마크 파일이 아예 없을 때만 쓰는 기본 그림 */
+const DEFAULT_MARK = `<svg xmlns="http://www.w3.org/2000/svg" width="58" height="58" viewBox="0 0 64 64"><circle cx="32" cy="32" r="28" fill="none" stroke="#1769c0" stroke-width="3"/><path d="M22 32l7 7 14-15" fill="none" stroke="#1769c0" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/></svg>`;
 
-/* marks 폴더에 실제 로고 파일(kc.png, ce.png ...)이 없으면 임시 그림으로 자동 대체 */
+/* marks/○○.svg → 없으면 marks/○○.png → 그것도 없으면 기본 그림 */
 window.markFallback = function (img) {
+  if (img.src.endsWith('.svg')) { img.src = img.src.slice(0, -4) + '.png'; return; }
   img.onerror = null;
-  const box = img.parentNode;
-  box.innerHTML = markSVG(box.getAttribute('data-mark'));
+  img.parentNode.innerHTML = DEFAULT_MARK;
 };
 
 /* =====================================================================
@@ -213,8 +195,8 @@ function render(parsed) {
   const initials = (data['영문사명'] || 'KC')
     .replace(/[^A-Za-z& ]/g, '').split(/\s|&/).filter(Boolean)
     .slice(0, 2).map(w => w[0]).join('').toUpperCase() || 'KC';
-  $('logoMark').textContent = initials;
-  $('footMark').textContent = initials;
+  /* 머리말 로고는 marks/kc_company_logo_200x200.png 이미지를 씁니다.
+     (index.html 안에 들어 있으므로 여기서 글자로 덮어쓰지 않습니다) */
   $('logoText').textContent = data['로고글자'] || company;
   $('footBrand').textContent = company;
 
@@ -265,7 +247,7 @@ function render(parsed) {
       '</div><div class="biz-items">' +
       its.map(it =>
         '<div class="biz-item"><div class="mark" data-mark="' + esc(it.mark) + '">' +
-          '<img src="marks/' + encodeURIComponent(it.mark.toLowerCase()) + '.png" alt="' + esc(it.title) + ' 인증 마크" onerror="markFallback(this)">' +
+          '<img src="marks/' + encodeURIComponent(it.mark.toLowerCase()) + '.svg" alt="' + esc(it.title) + ' 인증 마크" onerror="markFallback(this)">' +
         '</div><h4>' + esc(it.title) + '</h4>' +
         (it.desc ? '<p>' + esc(it.desc) + '</p>' : '') + '</div>'
       ).join('') +

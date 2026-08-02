@@ -60,10 +60,10 @@
 #     (마크ID는 로고 그림을 고르는 코드입니다. 사용 가능한 코드:
 #      KC, ENERGY, HIGHEFF, SAFETY, CE, FCC, PSE, UL, CCC,
 #      ISO, KS, MAINBIZ, INNOBIZ, VENTURE, RND, DIRECT)
-#  ★ 실제 공식 로고 넣는 법:
-#     index.html 과 같은 폴더에 "marks" 폴더를 만들고, 그 안에
-#     소문자 파일명(kc.png, ce.png, iso.png, mainbiz.png ...)으로 저장하면
-#     자동으로 실제 로고가 표시됩니다. 파일이 없으면 임시 그림이 나옵니다.
+#  ★ 로고 그림 바꾸는 법:
+#     로고는 모두 "marks" 폴더 안의 파일입니다. (kc.svg, ce.svg, iso.svg ...)
+#     같은 이름으로 덮어쓰면 바뀝니다. png 로 넣으려면 kc.png 처럼 두면 됩니다.
+#     자세한 내용은 marks/README.txt 를 보세요.
 사업분야_소제목: BUSINESS
 사업분야_제목: 사업 분야
 사업분야_설명: 국내·해외 인증부터 기업(확인)인증까지, 분야별로 필요한 인증을 한 곳에서 지원합니다.
