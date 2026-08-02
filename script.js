@@ -22,6 +22,7 @@ const FALLBACK_MD = `
 히어로_설명: 국내·해외 인증부터 ISO·기업인증까지, 복잡한 인증 절차를 한 곳에서 해결해 드립니다.
 히어로_버튼1: 무료 상담 문의
 히어로_버튼2: 사업분야 보기
+히어로_배지: 국내 KC인증, 에너지효율등급, CE, FCC, PSE, UL, CCC, ISO 인증, KS인증 컨설팅, EMC, RF, SAFETY, 안전인증, 안전확인, 공급자적합성
 
 회사소개_소제목: COMPANY
 회사소개_제목: 인증 컨설팅 전문기업\\nK&C인증원입니다
@@ -76,6 +77,10 @@ DIRECT | 직접생산확인 | 공공조달 직접생산확인 취득 지원
 전화: 010-3285-3040
 이메일: jonkim924@gmail.com
 영업시간: 평일 09:00 - 18:00 (점심 12:00 - 13:00 / 주말·공휴일 휴무)
+
+지사주소: 경기도 고양시 덕양구 꽃마을로 34, 5층 526호 (향동동, 디엠씨스타팰리스)
+지사전화: 010-9479-4919
+지사이메일: standard4919@gmail.com
 
 문의_소제목: CONTACT
 문의_제목: 인증, 무엇이든 문의하세요
@@ -185,7 +190,6 @@ window.markFallback = function (img) {
    ===================================================================== */
 function render(parsed) {
   const { data, lists, groups, items } = parsed;
-  const allItems = groups.flatMap(g => items[g.name] || []);
   const $ = id => document.getElementById(id);
 
   /* ---- 기본 정보(회사명/로고) ---- */
@@ -212,10 +216,12 @@ function render(parsed) {
   $('heroBtn1').innerHTML = esc(data['히어로_버튼1'] || '문의하기') + ' &nbsp;→';
   $('heroBtn2').textContent = data['히어로_버튼2'] || '사업분야 보기';
 
-  const badgeMarks = ['KC', 'ENERGY', 'CE', 'FCC', 'PSE', 'UL', 'CCC', 'ISO', 'KS'];
-  $('heroBadges').innerHTML = allItems
-    .filter(it => badgeMarks.includes(it.mark))
-    .map(it => '<span>' + esc(it.title.split(/[·(]/)[0].trim()) + '</span>').join('');
+  /* 한글 문구는 윗줄, 영문 문구는 아랫줄로 나눠서 표시 */
+  const badges = (data['히어로_배지'] || '').split(',').map(s => s.trim()).filter(Boolean);
+  const chips = arr => arr.map(s => '<span>' + esc(s) + '</span>').join('');
+  const ko = badges.filter(s => /[가-힣]/.test(s));
+  const en = badges.filter(s => !/[가-힣]/.test(s));
+  $('heroBadges').innerHTML = chips(ko) + (ko.length && en.length ? '<i class="brk"></i>' : '') + chips(en);
 
   /* ---- 회사소개 ---- */
   $('companyEyebrow').textContent = data['회사소개_소제목'] || '';
@@ -302,10 +308,17 @@ function render(parsed) {
 
   /* ---- 푸터 ---- */
   $('footMsg').innerHTML = nl(data['푸터_문구'] || '');
-  $('footContact').innerHTML = '<b>' + esc(company) + '</b><br>' +
-    (addr ? esc(addr) + '<br>' : '') +
-    (tel ? 'T. ' + esc(tel) + '<br>' : '') +
-    (mail ? 'E. ' + esc(mail) : '');
+  const footBlock = (label, lines) =>
+    '<b>' + label + '</b><br>' + lines.filter(Boolean).map(esc).join('<br>');
+  $('footContact').innerHTML =
+    footBlock('본사', [addr, tel && 'T. ' + tel, mail && 'E. ' + mail]) +
+    (data['지사주소'] || data['지사전화'] || data['지사이메일']
+      ? '<br><br>' + footBlock('지사', [
+          data['지사주소'],
+          data['지사전화'] && 'T. ' + data['지사전화'],
+          data['지사이메일'] && 'E. ' + data['지사이메일']
+        ])
+      : '');
   $('footCopy').textContent = data['저작권'] || '';
 
   /* ---- 메뉴 드롭다운 ---- */

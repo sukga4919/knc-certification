@@ -70,6 +70,7 @@ header{position:sticky;top:0;z-index:100;background:rgba(255,255,255,.92);backdr
 .btn-ghost{background:rgba(255,255,255,.12);color:#fff;border:1px solid rgba(255,255,255,.35)}
 .btn-ghost:hover{background:rgba(255,255,255,.22)}
 .hero-badges{display:flex;flex-wrap:wrap;gap:10px;margin-top:44px}
+.hero-badges .brk{flex-basis:100%;height:0}
 .hero-badges span{font-size:13.5px;font-weight:600;padding:8px 14px;border-radius:999px;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.22);color:#eaf3fc}
 .hero-wave{position:absolute;bottom:-1px;left:0;width:100%;z-index:1;line-height:0}
 
