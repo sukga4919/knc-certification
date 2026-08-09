@@ -74,7 +74,9 @@ DIRECT | 직접생산확인 | 공공조달 직접생산확인 취득 지원
 오시는길_소제목: LOCATION
 오시는길_제목: 오시는 길
 주소: 경기도 의왕시 민백1길 5 경원벨리 2층 202호
+전화담당자: 김주환 팀장
 전화: 010-3285-3040
+전화2: 031-341-3764
 이메일: jonkim924@gmail.com
 영업시간: 평일 09:00 - 18:00 (점심 12:00 - 13:00 / 주말·공휴일 휴무)
 
@@ -88,6 +90,8 @@ DIRECT | 직접생산확인 | 공공조달 직접생산확인 취득 지원
 문의폼주소: mailto
 
 푸터_문구: 국내·해외 인증부터 기업 인증까지, 정직과 신뢰로 함께하는 인증 파트너가 되겠습니다.
+대표이사: 김주환
+사업자등록번호: 634-72-00775
 저작권: © 2026 K&C인증원. All rights reserved.
 
 [회사소개_하위]
@@ -267,13 +271,18 @@ function render(parsed) {
   /* ---- 오시는 길 ---- */
   const addr = data['주소'] || '';
   const tel = data['전화'] || '';
+  const tel2 = data['전화2'] || '';
+  const telName = data['전화담당자'] || '';
   const mail = data['이메일'] || '';
+  const telLink = n => '<a href="tel:' + n.replace(/[^0-9+]/g, '') + '">' + esc(n) + '</a>';
+  const telHtml = [telName && esc(telName), tel && telLink(tel), tel2 && telLink(tel2)]
+    .filter(Boolean).join('<br>');
   $('locEyebrow').textContent = data['오시는길_소제목'] || '';
   $('locTitle').textContent = data['오시는길_제목'] || '';
   $('mapFrame').src = 'https://www.google.com/maps?q=' + encodeURIComponent(addr) + '&hl=ko&z=17&output=embed';
   $('locInfo').innerHTML = [
     { t: '주소', v: esc(addr), ic: '<path d="M12 21s-7-6-7-11a7 7 0 0 1 14 0c0 5-7 11-7 11z"/><circle cx="12" cy="10" r="2.5"/>' },
-    { t: '전화', v: tel ? '<a href="tel:' + tel.replace(/[^0-9+]/g, '') + '">' + esc(tel) + '</a>' : '', ic: '<path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2 4.2 2 2 0 0 1 4 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8 9.9a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.5c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.8 2z"/>' },
+    { t: '전화', v: telHtml, ic: '<path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2 4.2 2 2 0 0 1 4 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8 9.9a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.5c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.8 2z"/>' },
     { t: '이메일', v: mail ? '<a href="mailto:' + esc(mail) + '">' + esc(mail) + '</a>' : '', ic: '<rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/>' },
     { t: '영업시간', v: esc(data['영업시간'] || ''), ic: '<circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/>' }
   ].filter(x => x.v).map(x =>
@@ -311,7 +320,14 @@ function render(parsed) {
   const footBlock = (label, lines) =>
     '<b>' + label + '</b><br>' + lines.filter(Boolean).map(esc).join('<br>');
   $('footContact').innerHTML =
-    footBlock('본사', [addr, tel && 'T. ' + tel, mail && 'E. ' + mail]) +
+    footBlock('본사', [
+      addr,
+      tel && 'H. ' + tel,
+      tel2 && 'T. ' + tel2,
+      mail && 'E. ' + mail,
+      data['대표이사'] && '대표이사 ' + data['대표이사'],
+      data['사업자등록번호'] && '사업자 등록번호 : ' + data['사업자등록번호']
+    ]) +
     (data['지사주소'] || data['지사전화'] || data['지사이메일']
       ? '<br><br>' + footBlock('지사', [
           data['지사주소'],
