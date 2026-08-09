@@ -78,7 +78,7 @@ DIRECT | 직접생산확인 | 공공조달 직접생산확인 취득 지원
 전화: 010-3285-3040
 전화2: 031-341-3764
 이메일: jonkim924@gmail.com
-영업시간: 평일 09:00 - 18:00 (점심 12:00 - 13:00 / 주말·공휴일 휴무)
+영업시간: 평일 09:00 - 18:00\\n(점심 12:00 - 13:00 / 주말·공휴일 휴무)
 
 지사주소: 경기도 고양시 덕양구 꽃마을로 34, 5층 526호 (향동동, 디엠씨스타팰리스)
 지사전화: 010-9479-4919
@@ -87,7 +87,7 @@ DIRECT | 직접생산확인 | 공공조달 직접생산확인 취득 지원
 문의_소제목: CONTACT
 문의_제목: 인증, 무엇이든 문의하세요
 문의_설명: 제품·업종과 필요한 인증을 남겨주시면 영업일 기준 2일 이내에 맞춤 상담을 드립니다.
-문의폼주소: mailto
+카카오톡주소: https://pf.kakao.com/_RPuBX/chat
 
 푸터_문구: 국내·해외 인증부터 기업 인증까지, 정직과 신뢰로 함께하는 인증 파트너가 되겠습니다.
 대표이사: 김주환
@@ -284,7 +284,7 @@ function render(parsed) {
     { t: '주소', v: esc(addr), ic: '<path d="M12 21s-7-6-7-11a7 7 0 0 1 14 0c0 5-7 11-7 11z"/><circle cx="12" cy="10" r="2.5"/>' },
     { t: '전화', v: telHtml, ic: '<path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2 4.2 2 2 0 0 1 4 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8 9.9a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.5c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.8 2z"/>' },
     { t: '이메일', v: mail ? '<a href="mailto:' + esc(mail) + '">' + esc(mail) + '</a>' : '', ic: '<rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/>' },
-    { t: '영업시간', v: esc(data['영업시간'] || ''), ic: '<circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/>' }
+    { t: '영업시간', v: nl(data['영업시간'] || ''), ic: '<circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/>' }
   ].filter(x => x.v).map(x =>
     '<div class="loc-item"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">' + x.ic + '</svg></div>' +
     '<div><h4>' + x.t + '</h4><p>' + x.v + '</p></div></div>'
@@ -295,44 +295,31 @@ function render(parsed) {
   $('ctTitle').textContent = data['문의_제목'] || '';
   $('ctDesc').textContent = data['문의_설명'] || '';
   $('ctInfo').innerHTML = [
-    { ic: '<path d="M22 16.9v3a2 2 0 0 1-2.2 2A19.8 19.8 0 0 1 4.2 8.6 19.8 19.8 0 0 1 2 4.2 2 2 0 0 1 4 2h3a2 2 0 0 1 2 1.7 12 12 0 0 0 .7 2.8 2 2 0 0 1-.5 2.1L8 9.9a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.5 12 12 0 0 0 2.8.7A2 2 0 0 1 22 16.9z"/>', v: tel },
-    { ic: '<rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/>', v: mail },
-    { ic: '<path d="M12 21s-7-6-7-11a7 7 0 0 1 14 0c0 5-7 11-7 11z"/><circle cx="12" cy="10" r="2.5"/>', v: addr }
+    { ic: '<path d="M22 16.9v3a2 2 0 0 1-2.2 2A19.8 19.8 0 0 1 4.2 8.6 19.8 19.8 0 0 1 2 4.2 2 2 0 0 1 4 2h3a2 2 0 0 1 2 1.7 12 12 0 0 0 .7 2.8 2 2 0 0 1-.5 2.1L8 9.9a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.5 12 12 0 0 0 2.8.7A2 2 0 0 1 22 16.9z"/>', v: [tel, tel2].filter(Boolean).map(telLink).join('<br>') },
+    { ic: '<rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/>', v: esc(mail) },
+    { ic: '<path d="M12 21s-7-6-7-11a7 7 0 0 1 14 0c0 5-7 11-7 11z"/><circle cx="12" cy="10" r="2.5"/>', v: esc(addr) }
   ].filter(x => x.v).map(x =>
-    '<li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">' + x.ic + '</svg>' + esc(x.v) + '</li>'
+    '<li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">' + x.ic + '</svg><span>' + x.v + '</span></li>'
   ).join('');
-
-  /* 문의 폼의 "관심 인증 분야" 목록 = 사업분야 그룹/항목 */
-  const sel = $('serviceSelect');
-  groups.forEach(g => {
-    const og = document.createElement('optgroup');
-    og.label = g.name;
-    (items[g.name] || []).forEach(it => {
-      const o = document.createElement('option');
-      o.value = it.title; o.textContent = it.title;
-      og.appendChild(o);
-    });
-    sel.appendChild(og);
-  });
 
   /* ---- 푸터 ---- */
   $('footMsg').innerHTML = nl(data['푸터_문구'] || '');
   const footBlock = (label, lines) =>
-    '<b>' + label + '</b><br>' + lines.filter(Boolean).map(esc).join('<br>');
+    '<b>' + label + '</b><br>' + lines.filter(Boolean).join('<br>');
   $('footContact').innerHTML =
     footBlock('본사', [
-      addr,
-      tel && 'H. ' + tel,
-      tel2 && 'T. ' + tel2,
-      mail && 'E. ' + mail,
-      data['대표이사'] && '대표이사 ' + data['대표이사'],
-      data['사업자등록번호'] && '사업자 등록번호 : ' + data['사업자등록번호']
+      esc(addr),
+      tel && 'H. ' + telLink(tel),
+      tel2 && 'T. ' + telLink(tel2),
+      mail && 'E. ' + esc(mail),
+      data['대표이사'] && '대표이사 ' + esc(data['대표이사']),
+      data['사업자등록번호'] && '사업자 등록번호 : ' + esc(data['사업자등록번호'])
     ]) +
     (data['지사주소'] || data['지사전화'] || data['지사이메일']
       ? '<br><br>' + footBlock('지사', [
-          data['지사주소'],
-          data['지사전화'] && 'T. ' + data['지사전화'],
-          data['지사이메일'] && 'E. ' + data['지사이메일']
+          esc(data['지사주소'] || ''),
+          data['지사전화'] && 'T. ' + telLink(data['지사전화']),
+          data['지사이메일'] && 'E. ' + esc(data['지사이메일'])
         ])
       : '');
   $('footCopy').textContent = data['저작권'] || '';
@@ -352,44 +339,22 @@ function render(parsed) {
   document.querySelector('.dropdown[data-sub="business"]').innerHTML =
     groups.map((g, gi) => '<li><a href="#biz-g' + gi + '">' + esc(g.name) + '</a></li>').join('');
 
-  /* ---- 문의 폼 전송 방식 ---- */
-  setupForm((data['문의폼주소'] || 'mailto').trim(), mail);
+  /* ---- 카카오톡 상담 버튼 ---- */
+  setupKakao(data['카카오톡주소'], [tel, tel2].filter(Boolean).map(telLink).join(' / '), data['영업시간']);
 }
 
 /* =====================================================================
-   4) 문의 폼
+   4) 카카오톡 상담 버튼
+      버튼을 누르면 카카오톡 채널의 1:1 채팅방이 새 창으로 열립니다.
    ===================================================================== */
-function setupForm(formTarget, email) {
-  const note = document.getElementById('formNote');
-  note.textContent = formTarget.startsWith('http')
-    ? '* 접수 즉시 담당자에게 전달됩니다.'
-    : '* 보내기를 누르면 메일 작성창이 열립니다.';
-
-  document.getElementById('inquiryForm').addEventListener('submit', function (e) {
-    e.preventDefault();
-    const f = e.target, fd = new FormData(f);
-
-    if (formTarget.startsWith('http')) {
-      fetch(formTarget, { method: 'POST', body: fd, headers: { 'Accept': 'application/json' } })
-        .then(r => {
-          if (!r.ok) throw new Error('전송 실패');
-          alert('문의가 접수되었습니다. 감사합니다!');
-          f.reset();
-        })
-        .catch(() => alert('전송에 실패했습니다. 잠시 후 다시 시도해 주세요.'));
-      return;
-    }
-
-    const subject = encodeURIComponent('[홈페이지 문의] ' + (fd.get('name') || ''));
-    const body = encodeURIComponent(
-      '■ 이름/회사명: ' + (fd.get('name') || '') + '\n' +
-      '■ 연락처: ' + (fd.get('phone') || '') + '\n' +
-      '■ 이메일: ' + (fd.get('email') || '') + '\n' +
-      '■ 관심 분야: ' + (fd.get('service') || '') + '\n\n' +
-      '■ 문의 내용:\n' + (fd.get('message') || '')
-    );
-    window.location.href = 'mailto:' + email + '?subject=' + subject + '&body=' + body;
-  });
+function setupKakao(url, tel, hours) {
+  document.getElementById('kakaoBtn').href = (url || '').trim();
+  document.getElementById('kakaoInfo').innerHTML = [
+    { v: nl(hours), ic: '<circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/>' },
+    { v: tel && '전화 상담 ' + tel, ic: '<path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8.1 9.9a16 16 0 0 0 6 6l1.3-1.2a2 2 0 0 1 2.1-.5c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.7 2z"/>' }
+  ].filter(x => x.v).map(x =>
+    '<li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">' + x.ic + '</svg><span>' + x.v + '</span></li>'
+  ).join('');
 }
 
 /* =====================================================================

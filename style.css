@@ -131,21 +131,24 @@ header{position:sticky;top:0;z-index:100;background:rgba(255,255,255,.92);backdr
 .contact-left .sec-desc{color:#cfe0f2}
 .contact-left .eyebrow{color:#8fd4ff}
 .contact-left ul{list-style:none;margin-top:26px;display:flex;flex-direction:column;gap:14px}
-.contact-left li{display:flex;gap:12px;align-items:center;color:#eaf3fc;font-weight:600}
-.contact-left li svg{width:20px;height:20px;color:#8fd4ff;flex:0 0 auto}
+.contact-left li{display:flex;gap:12px;align-items:flex-start;color:#eaf3fc;font-weight:600}
+.contact-left li svg{width:20px;height:20px;color:#8fd4ff;flex:0 0 auto;margin-top:calc((1.65em - 20px)/2)}
 .form{background:#fff;border-radius:20px;padding:34px;box-shadow:var(--shadow-lg)}
 .form h3{font-size:20px;font-weight:800;margin-bottom:6px}
 .form .sub{color:var(--muted);font-size:14px;margin-bottom:20px}
-.field{margin-bottom:16px}
-.field label{display:block;font-size:14px;font-weight:700;margin-bottom:7px}
-.field label span{color:#e0483b}
-.field input,.field select,.field textarea{width:100%;padding:13px 15px;border:1px solid var(--line);border-radius:11px;font-size:15px;font-family:inherit;background:#fbfcfe;transition:.15s;color:var(--ink)}
-.field input:focus,.field select:focus,.field textarea:focus{outline:0;border-color:var(--brand-2);background:#fff;box-shadow:0 0 0 4px rgba(23,105,192,.1)}
-.field textarea{resize:vertical;min-height:110px}
-.form .row2{display:grid;grid-template-columns:1fr 1fr;gap:14px}
-.form-submit{width:100%;background:var(--brand);color:#fff;padding:15px;border:0;border-radius:11px;font-size:16px;font-weight:700;cursor:pointer;transition:.2s}
-.form-submit:hover{background:var(--brand-2)}
-.form-note{font-size:12.5px;color:var(--muted);text-align:center;margin-top:12px}
+/* 카카오톡 상담 카드
+   버튼 색상(#FEE500) / 글자색(검정 85%) / 모서리 12px 는 카카오 공식 디자인 가이드 규격입니다. */
+.kakao-card{text-align:center}
+.kakao-badge{display:inline-flex;align-items:center;gap:6px;background:#fff6c2;color:#6b5200;font-size:12.5px;font-weight:800;padding:7px 13px;border-radius:999px;margin-bottom:14px}
+.kakao-badge svg{width:14px;height:14px;fill:currentColor}
+.kakao-card h3{font-size:22px}
+.kakao-card .sub{margin-bottom:24px;line-height:1.75}
+.kakao-btn{display:flex;align-items:center;justify-content:center;gap:10px;width:100%;background:#FEE500;color:rgba(0,0,0,.85);padding:16px;border-radius:12px;font-size:17px;font-weight:800;transition:.2s}
+.kakao-btn svg{width:23px;height:23px;fill:#000;flex:0 0 auto}
+.kakao-btn:hover{transform:translateY(-2px);box-shadow:0 14px 28px rgba(190,165,0,.35)}
+.kakao-info{list-style:none;margin-top:18px;width:fit-content;margin-inline:auto;display:flex;flex-direction:column;gap:9px;font-size:13.5px;color:var(--muted)}
+.kakao-info li{display:flex;gap:8px;align-items:flex-start;text-align:left}
+.kakao-info svg{width:16px;height:16px;color:var(--brand-2);flex:0 0 auto;margin-top:calc((1.65em - 16px)/2)}
 
 /* ================= FOOTER ================= */
 footer{background:#0a1a2f;color:#aebfd2;padding:56px 0 32px}
