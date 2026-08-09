@@ -275,13 +275,16 @@ function render(parsed) {
   const telName = data['전화담당자'] || '';
   const mail = data['이메일'] || '';
   const telLink = n => '<a href="tel:' + n.replace(/[^0-9+]/g, '') + '">' + esc(n) + '</a>';
+  /* 주소를 누르면 네이버 지도 검색 결과로 (모바일에서는 네이버 지도 앱) */
+  const mapLink = a => '<a href="https://map.naver.com/p/search/' + encodeURIComponent(a) +
+    '" target="_blank" rel="noopener noreferrer">' + esc(a) + '</a>';
   const telHtml = [telName && esc(telName), tel && telLink(tel), tel2 && telLink(tel2)]
     .filter(Boolean).join('<br>');
   $('locEyebrow').textContent = data['오시는길_소제목'] || '';
   $('locTitle').textContent = data['오시는길_제목'] || '';
   $('mapFrame').src = 'https://www.google.com/maps?q=' + encodeURIComponent(addr) + '&hl=ko&z=17&output=embed';
   $('locInfo').innerHTML = [
-    { t: '주소', v: esc(addr), ic: '<path d="M12 21s-7-6-7-11a7 7 0 0 1 14 0c0 5-7 11-7 11z"/><circle cx="12" cy="10" r="2.5"/>' },
+    { t: '주소', v: addr && mapLink(addr), ic: '<path d="M12 21s-7-6-7-11a7 7 0 0 1 14 0c0 5-7 11-7 11z"/><circle cx="12" cy="10" r="2.5"/>' },
     { t: '전화', v: telHtml, ic: '<path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2 4.2 2 2 0 0 1 4 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8 9.9a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.5c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.8 2z"/>' },
     { t: '이메일', v: mail ? '<a href="mailto:' + esc(mail) + '">' + esc(mail) + '</a>' : '', ic: '<rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/>' },
     { t: '영업시간', v: nl(data['영업시간'] || ''), ic: '<circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/>' }
@@ -297,7 +300,7 @@ function render(parsed) {
   $('ctInfo').innerHTML = [
     { ic: '<path d="M22 16.9v3a2 2 0 0 1-2.2 2A19.8 19.8 0 0 1 4.2 8.6 19.8 19.8 0 0 1 2 4.2 2 2 0 0 1 4 2h3a2 2 0 0 1 2 1.7 12 12 0 0 0 .7 2.8 2 2 0 0 1-.5 2.1L8 9.9a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.5 12 12 0 0 0 2.8.7A2 2 0 0 1 22 16.9z"/>', v: [tel, tel2].filter(Boolean).map(telLink).join('<br>') },
     { ic: '<rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/>', v: esc(mail) },
-    { ic: '<path d="M12 21s-7-6-7-11a7 7 0 0 1 14 0c0 5-7 11-7 11z"/><circle cx="12" cy="10" r="2.5"/>', v: esc(addr) }
+    { ic: '<path d="M12 21s-7-6-7-11a7 7 0 0 1 14 0c0 5-7 11-7 11z"/><circle cx="12" cy="10" r="2.5"/>', v: addr && mapLink(addr) }
   ].filter(x => x.v).map(x =>
     '<li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">' + x.ic + '</svg><span>' + x.v + '</span></li>'
   ).join('');
@@ -308,7 +311,7 @@ function render(parsed) {
     '<b>' + label + '</b><br>' + lines.filter(Boolean).join('<br>');
   $('footContact').innerHTML =
     footBlock('본사', [
-      esc(addr),
+      addr && mapLink(addr),
       tel && 'H. ' + telLink(tel),
       tel2 && 'T. ' + telLink(tel2),
       mail && 'E. ' + esc(mail),
@@ -317,7 +320,7 @@ function render(parsed) {
     ]) +
     (data['지사주소'] || data['지사전화'] || data['지사이메일']
       ? '<br><br>' + footBlock('지사', [
-          esc(data['지사주소'] || ''),
+          data['지사주소'] && mapLink(data['지사주소']),
           data['지사전화'] && 'T. ' + telLink(data['지사전화']),
           data['지사이메일'] && 'E. ' + esc(data['지사이메일'])
         ])
