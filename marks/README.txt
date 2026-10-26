@@ -8,6 +8,7 @@
   energy.svg   - 에너지효율등급
   higheff.png  - 고효율에너지기자재 인증 (한국에너지공단 원본 이미지)
   safety.svg   - 안전인증 및 안전확인(공급자적합성확인)
+  eco.png      - 환경표지인증 (한국환경산업기술원 원본 이미지)
 
 ■ 해외인증
   ce.svg       - CE (유럽)
@@ -36,6 +37,8 @@
 * energy       : 한국에너지공단 에너지소비효율등급 라벨
 * higheff      : 한국에너지공단 원본 이미지 그대로
                  (eep.energy.or.kr 의 pic_bs0021.gif 를 png 로 변환)
+* eco          : 한국환경산업기술원 환경표지 마크 원본 이미지 (한글판만 잘라냄)
+                 (keiti.re.kr 의 img_sub2_3_1_1_20251013.jpg 를 png 로 변환)
 * ce / ccc / ul / fcc / ks : 각 제도의 공식 도안(벡터)
 * pse          : 일본 전기용품안전법 특정전기용품 마름모 마크
 * mainbiz      : 중소벤처기업부 메인비즈 공식 SVG 로고 그대로

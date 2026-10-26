@@ -61,7 +61,7 @@
 #  2) 각 그룹 이름과 똑같은 [이름] 블록에 인증 항목을 넣습니다.
 #     항목 형식 →  마크ID | 인증이름 | 설명
 #     (마크ID는 로고 그림을 고르는 코드입니다. 사용 가능한 코드:
-#      KC, ENERGY, HIGHEFF, SAFETY, CE, FCC, PSE, UL, CCC,
+#      KC, ENERGY, HIGHEFF, SAFETY, ECO, CE, FCC, PSE, UL, CCC,
 #      ISO, KS, MAINBIZ, INNOBIZ, VENTURE, RND, DIRECT)
 #  ★ 로고 그림 바꾸는 법:
 #     로고는 모두 "marks" 폴더 안의 파일입니다. (kc.svg, ce.svg, iso.svg ...)
@@ -81,6 +81,7 @@ KC | 국내 KC인증 | 전기·전자·생활용품 등 KC 안전인증과 전�
 ENERGY | 에너지효율등급 | 에너지소비효율 등급표시 대상 제품 신고·시험 대행
 HIGHEFF | 고효율에너지기자재 인증 | 고효율기자재 인증 대상 품목 시험·신청 지원
 SAFETY | 안전인증 및 안전확인 (공급자적합성확인) | 안전인증·안전확인·자율안전확인 전 과정 대응
+ECO | 환경표지인증 | 한국환경산업기술원 환경표지(친환경) 인증 취득 지원
 
 [해외인증]
 CE | CE · 유럽 | 유럽 수출을 위한 CE 마킹 적합성 평가
